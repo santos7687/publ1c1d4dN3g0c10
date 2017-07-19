@@ -7,6 +7,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+import { Facebook } from '@ionic-native/facebook';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'd72cc95a'
+  }
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -14,7 +24,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -22,6 +33,7 @@ import { HomePage } from '../pages/home/home';
     HomePage
   ],
   providers: [
+    Facebook,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

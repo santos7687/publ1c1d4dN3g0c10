@@ -20,10 +20,18 @@
     "@angular/http": "4.1.3",
     "@angular/platform-browser": "4.1.3",
     "@angular/platform-browser-dynamic": "4.1.3",
+    "@ionic-native/camera": "^4.0.1",
     "@ionic-native/core": "3.12.1",
+    "@ionic-native/facebook": "^4.0.1",
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
+    "@ionic/cloud-angular": "^0.12.0",
     "@ionic/storage": "2.0.1",
+    "angularfire2": "^4.0.0-rc.1",
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-camera": "^2.4.1",
+    "cordova-plugin-facebook4": "^1.9.1",
+    "firebase": "^4.1.3",
     "ionic-angular": "3.5.0",
     "ionicons": "3.0.0",
     "rxjs": "5.4.0",
@@ -32,6 +40,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.3.12",
+    "@ionic/cli-plugin-cordova": "1.4.1",
     "@ionic/cli-plugin-ionic-angular": "1.3.2",
     "typescript": "2.3.4"
   },
@@ -44,5 +53,14 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "pubneg: An Ionic project"
+  "description": "pubneg: An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-facebook4": {
+        "APP_ID": "324111228033136",
+        "APP_NAME": "pubneg"
+      },
+      "cordova-plugin-camera": {}
+    }
+  }
 }

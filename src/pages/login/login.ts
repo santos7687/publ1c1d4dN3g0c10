@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Auth, User } from '@ionic/cloud-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Facebook } from '@ionic-native/facebook';
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -17,17 +11,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPage {
 
-   myForm: FormGroup;
+  users: any = {};
+  showUser: boolean = false;
+
+  myForm: FormGroup;
 
   constructor(
     public navCtrl: NavController,
     public formBuilder: FormBuilder,
     public auth: Auth, 
-    public user: User
+    public user: User,
+    public facebook: Facebook
   ) {
     this.myForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
+    });
+  }
+
+  loginFacebook(){
+    this.facebook.login(['public_profile', 'email'])
+    .then(rta =>{
+      console.log(rta.status);
+      if(rta.status == 'connected'){
+        this.getInfo();
+      };
+    })
+    .catch(error =>{
+      console.error( error );
+    });
+
+  }
+
+  getInfo(){
+    this.facebook.api('/me?fields=id,name,email,first_name,picture,last_name,gender',['public_profile','email'])
+    .then(data=>{
+      console.log(data);
+      this.showUser = true;
+      this.users = data;
+    })
+
+    .catch(error =>{
+      console.error( error);
     });
   }
 
@@ -51,13 +76,14 @@ export class LoginPage {
         let errors = '';
         if(err.message === 'UNPROCESSABLE ENTITY') errors += 'Email isn\'t valid.<br/>';
         if(err.message === 'UNAUTHORIZED') errors += 'Password is required.<br/>';
-      }  
+      }
     );
+  
+
   }
 
-  
- goToSignup(){
-    this.navCtrl.push('SignupPage');
+  goToSignup(){
+    this.navCtrl.push('RegisterPage');
   }
 
   goToResetPassword(){

@@ -39,7 +39,7 @@
           <ion-item>
             <ion-icon name="eye" item-left></ion-icon>
             <ion-label stacked>Contraseña:</ion-label>
-            <ion-input formControlName="password"type="text" placeholder="Contraseña"></ion-input>
+            <ion-input formControlName="password"type="password" placeholder="Contraseña"></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="eye" item-left></ion-icon>
@@ -48,20 +48,20 @@
           </ion-item>
         </div>
         <ion-row radio-group formControlName="gender">
-          <ion-item class="woman">
+          <ion-item>
             <ion-icon  name="woman" item-left></ion-icon>
             <ion-label>Mujer</ion-label>
             <ion-radio value="2"></ion-radio>
           </ion-item>
-          <ion-item class="man">
+
+          <ion-item>
             <ion-icon name="man" item-left></ion-icon>
             <ion-label>Hombre</ion-label>
             <ion-radio value="1"></ion-radio>
           </ion-item>
         </ion-row>
       </ion-list>
-    <div padding>
       <button ion-button block type="submit" [disabled]="!myForm.valid">Guardar</button>
-    </div>
+      <button ion-button block >Salir</button>
   </form>
 </ion-content>

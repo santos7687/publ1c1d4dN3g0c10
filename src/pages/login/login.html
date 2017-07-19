@@ -1,20 +1,10 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>login</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
- 
   <form [formGroup]="myForm" (ngSubmit)="loginUser()">
     <ion-list>
       <ion-item>
@@ -34,11 +24,21 @@
   </form>
   <div text-center>
     <a ion-button block clear (click)="goToSignup()">
-      Create a new account
+      Crear una cuenta nueva
     </a>
     <a ion-button block clear (click)="goToResetPassword()">
-      I forgot my password
+      Olvide mi contraseña
     </a>
   </div>
-
+  <div class="col-xs-6 col-md-6">
+    Pregistrarse con Facebook
+    <button ion-button block (click)="loginFacebook">Login con Facebook</button>
+    <ion-item *ngIf="showUser">
+      <ion-avatar item-left>
+        <img [src]="users.picture.data.url" alt="">
+      </ion-avatar>
+      <h2>{{users.name}}</h2>
+      <p>{{users.email}}</p>
+    </ion-item>
+  </div>
 </ion-content>
